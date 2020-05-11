@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  rides:
+    build: .
+    image: rides:latest
+    command: python3 -u views.py
+    container_name: rides
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app_rides
+    links:
+      - mongorides
+
+  mongorides:
+    container_name: mongorides
+    image: mongo:latest
